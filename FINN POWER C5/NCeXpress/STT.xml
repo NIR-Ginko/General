@@ -1,0 +1,1668 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<Reports>
+<!--
+///////////////////////////////////////////////////////
+//
+// VSReport Report Definition File
+//
+// This file contains the following reports:
+//
+//   1) Eff_part_sub
+//   2) General_sub
+//   3) Plate data
+//   4) Report
+//   5) Tool_sub
+//
+///////////////////////////////////////////////////////
+-->
+
+  <!-- Report *** Eff_part_sub *** -->
+  <Report>
+    <Name>Eff_part_sub</Name>
+    <DataSource>
+      <RecordSource>Eff_part_sub</RecordSource>
+    </DataSource>
+    <Layout>
+      <Width>10095</Width>
+      <Orientation>1</Orientation>
+    </Layout>
+    <Groups>
+    </Groups>
+    <Sections>
+      <Section>
+        <Name>Detail</Name>
+        <Height>300</Height>
+        <BackColor>12632256</BackColor>
+        <OnFormat>'Time per part
+i = Instr(Total_time, ":")
+If i Then
+ PartMins = CLng(Left(Total_time,i-1))
+ PartSecs = CLng(Mid(Total_time,i+1))
+End If
+ 
+'Sum time of all similar parts
+SumTime = Round( ( PartMins*60 + PartSecs ) * Sheet_accm )
+PartMins = Int( SumTime/60 )
+PartSecs = SumTime - PartMins*60
+SumTimeCtl = CStr(PartMins) + ":" + Right("00" + CStr(PartSecs), 2)</OnFormat>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <Type>1</Type>
+        <Height>330</Height>
+        <BackColor>12632256</BackColor>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <Type>2</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Page Header</Name>
+        <Type>3</Type>
+      </Section>
+      <Section>
+        <Name>Page Footer</Name>
+        <Type>4</Type>
+        <Height>300</Height>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>Part_nameCtl</Name>
+        <Section>0</Section>
+        <Text>Part_name</Text>
+        <Calculated>-1</Calculated>
+        <Left>540</Left>
+        <Width>2625</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>FooterRight</Name>
+        <Section>4</Section>
+        <Text>"Страница " &amp; [Page] &amp; " из " &amp; [Pages]</Text>
+        <Calculated>-1</Calculated>
+        <Left>4590</Left>
+        <Width>4680</Width>
+        <Height>300</Height>
+        <Align>2</Align>
+        <Font>
+		<Name>Times New Roman</Name>
+        </Font>
+      </Field>
+      <Field>
+        <Name>PatternLbl</Name>
+        <Section>1</Section>
+        <Text>ID</Text>
+        <Left>90</Left>
+        <Width>375</Width>
+        <Height>300</Height>
+        <Align>4</Align>
+        <WordWrap>0</WordWrap>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Part_nameLbl</Name>
+        <Section>1</Section>
+        <Text>Деталь</Text>
+        <Left>540</Left>
+        <Width>990</Width>
+        <Height>300</Height>
+        <Align>3</Align>
+        <WordWrap>0</WordWrap>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label24</Name>
+        <Section>1</Section>
+        <Text>Время (m:s)</Text>
+        <Left>5200</Left>
+        <Width>990</Width>
+        <Height>300</Height>
+        <Align>3</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Total_timeCtl1</Name>
+        <Section>0</Section>
+        <Text>Total_time</Text>
+        <Calculated>-1</Calculated>
+        <Left>5220</Left>
+        <Width>825</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>PatternCtl1</Name>
+        <Section>0</Section>
+        <Text>Pattern</Text>
+        <Calculated>-1</Calculated>
+        <Left>90</Left>
+        <Width>375</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Sheet_accmCtl</Name>
+        <Section>0</Section>
+        <Text>Sheet_accm</Text>
+        <Calculated>-1</Calculated>
+        <Left>3240</Left>
+        <Width>735</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>50</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label</Name>
+        <Section>1</Section>
+        <Text>Кол.</Text><!-- Было: Qty -->
+        <Left>3450</Left>
+        <Width>465</Width>
+        <Height>300</Height>
+        <Align>3</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label2</Name>
+        <Section>1</Section>
+        <Text>Комментарий</Text>
+        <Left>7115</Left>
+        <Width>1455</Width>
+        <Height>300</Height>
+        <Align>3</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>NoteCtl1</Name>
+        <Section>0</Section>
+        <Text>Note</Text>
+        <Calculated>-1</Calculated>
+        <Left>6115</Left>
+        <Width>2715</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>50</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Order_IDCtl</Name>
+        <Section>0</Section>
+        <Text>Order_ID</Text>
+        <Calculated>-1</Calculated>
+        <Left>4060</Left>
+        <Width>1080</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>50</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label3</Name>
+        <Section>1</Section>
+        <Text>Заказ</Text><!-- Было: Order_ID -->
+        <Left>4100</Left>
+        <Width>1005</Width>
+        <Height>300</Height>
+        <Align>4</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label1</Name>
+        <Section>1</Section>
+        <Text>Изм.</Text>
+        <Left>8730</Left>
+        <Width>1005</Width>
+        <Height>300</Height>
+        <Align>4</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Revision_Ctl</Name>
+        <Section>0</Section>
+        <Text>Revision</Text>
+        <Calculated>-1</Calculated>
+        <Left>8910</Left>
+        <Width>645</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>50</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+    </Fields>
+  </Report>
+
+  <!-- Report *** General_sub *** -->
+  <Report>
+    <Name>General_sub</Name>
+    <DataSource>
+      <RecordSource>General_sub</RecordSource>
+    </DataSource>
+    <Layout>
+      <Width>10050</Width>
+      <Orientation>1</Orientation>
+    </Layout>
+    <Groups>
+    </Groups>
+    <Sections>
+      <Section>
+        <Name>Detail</Name>
+        <Height>690</Height>
+        <OnFormat>'Find the string before'_'
+i = Instr(Machine, "_")
+If i Then
+ CustomerCtl = Left(Machine,i-1)
+Else
+ 'use note-property, becasue we don't know better
+ CustomerCtl = Note
+End if</OnFormat>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <Type>1</Type>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <Type>2</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Page Header</Name>
+        <Type>3</Type>
+      </Section>
+      <Section>
+        <Name>Page Footer</Name>
+        <Type>4</Type>
+        <Height>365</Height>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>FooterRight</Name>
+        <Section>4</Section>
+        <Text>"Страница " &amp; [Page] &amp; " из " &amp; [Pages]</Text>
+        <Calculated>-1</Calculated>
+        <Left>4680</Left>
+        <Top>30</Top>
+        <Width>4680</Width>
+        <Height>300</Height>
+        <Align>2</Align>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>MachineCtl</Name>
+        <Section>0</Section>
+        <Text>Machine</Text>
+        <Calculated>-1</Calculated>
+        <Left>1350</Left>
+        <Width>2715</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <MarginLeft>50</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+		<Name>Times New Roman</Name>
+		<Size>12</Size>
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label</Name>
+        <Section>0</Section>
+        <Text>Станок:</Text>
+        <Width>1275</Width>
+        <Height>300</Height>
+        <Font>
+		<Name>Times New Roman</Name>
+	        <Size>12</Size>
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+    </Fields>
+  </Report>
+
+  <!-- Report *** Plate data *** -->
+  <Report>
+    <Name>Plate data</Name>
+    <DataSource>
+      <RecordSource>General_sub</RecordSource>
+    </DataSource>
+    <Layout>
+      <Width>10095</Width>
+      <Orientation>1</Orientation>
+    </Layout>
+    <Groups>
+    </Groups>
+    <Sections>
+      <Section>
+        <Name>Detail</Name>
+        <Height>2100</Height>
+        <BackColor>12632256</BackColor>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <Type>1</Type>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <Type>2</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Page Header</Name>
+        <Type>3</Type>
+      </Section>
+      <Section>
+        <Name>Page Footer</Name>
+        <Type>4</Type>
+        <Height>330</Height>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>FooterRight</Name>
+        <Section>4</Section>
+        <Text>"Страница " &amp; [Page] &amp; " из " &amp; [Pages]</Text>
+        <Calculated>-1</Calculated>
+        <Left>4680</Left>
+        <Top>30</Top>
+        <Width>4680</Width>
+        <Height>300</Height>
+        <Align>2</Align>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Nest ID]Lbl</Name>
+        <Section>0</Section>
+        <Text>Раскладка</Text>
+        <Left>90</Left>
+        <Top>90</Top>
+        <Width>1815</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Nest_IDCtl</Name>
+        <Section>0</Section>
+        <Text>Nest_ID</Text>
+        <Calculated>-1</Calculated>
+        <Left>1710</Left>
+        <Top>90</Top>
+        <Width>2625</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Plate size]Lbl</Name>
+        <Section>0</Section>
+        <Text>Размер листа</Text><!-- Было: Sheet Size -->
+        <Left>90</Left>
+        <Top>900</Top>
+        <Width>1150</Width><!-- Было: 915 -->
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name>
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Plate_sizeCtl</Name>
+        <Section>0</Section>
+        <Text>Plate_size</Text>
+        <Calculated>-1</Calculated>
+        <Left>1710</Left>
+        <Top>900</Top>
+        <Width>2625</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ThicknessCtl</Name>
+        <Section>0</Section>
+        <Text>Thickness</Text>
+        <Calculated>-1</Calculated>
+        <Left>8365</Left>
+        <Top>90</Top>
+        <Width>1005</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Material code]Lbl</Name>
+        <Section>0</Section>
+        <Text>Материал</Text><!-- Было: Material -->
+        <Left>4680</Left>
+        <Top>90</Top>
+        <Width>915</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+          	<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Material_codeCtl</Name>
+        <Section>0</Section>
+        <Text>Material_code</Text>
+        <Calculated>-1</Calculated>
+        <Left>6660</Left>
+        <Top>90</Top>
+        <Width>1635</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Number of plates]Lbl</Name>
+        <Section>0</Section>
+        <Text>Запуск</Text><!-- Было: Run-->
+        <Left>7540</Left><!-- Было: 7740-->
+        <Top>1710</Top>
+        <Width>565</Width><!-- Было: 465 -->
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Number_of_platesCtl</Name>
+        <Section>0</Section>
+        <Text>Number_of_plates</Text>
+        <Calculated>-1</Calculated>
+        <Left>8190</Left>
+        <Top>1710</Top>
+        <Width>555</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label10</Name>
+        <Section>0</Section>
+        <Text>Время на лист</Text>
+        <Left>4680</Left>
+        <Top>900</Top>
+        <Width>1905</Width>
+        <Height>300</Height>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Total_timeCtl1</Name>
+        <Section>0</Section>
+        <Text>Total_time</Text>
+        <Calculated>-1</Calculated>
+        <Left>6660</Left>
+        <Top>900</Top>
+        <Width>1635</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>1530</Left>
+        <Top>90</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label5</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>6480</Left>
+        <Top>90</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label6</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>1530</Left>
+        <Top>900</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label9</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>6480</Left>
+        <Top>900</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Number of plates]Lbl1</Name>
+        <Section>0</Section>
+        <Text>лист(ов)</Text><!-- Было: Sheet(s) -->
+        <Left>8820</Left>
+        <Top>1710</Top>
+        <Width>735</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Plate size]Lbl1</Name>
+        <Section>0</Section>
+        <Text>КИМ</Text><!-- Было: Sheet Utilization -->
+        <Left>4680</Left>
+        <Top>360</Top>
+        <Width>1905</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label1</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>6480</Left>
+        <Top>360</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>EfficiencyCtl</Name>
+        <Section>0</Section>
+        <Text>Efficiency</Text>
+        <Calculated>-1</Calculated>
+        <Left>6660</Left>
+        <Top>360</Top>
+        <Width>1635</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>LaserCtl</Name>
+        <Section>0</Section>
+        <Text>Comments</Text>
+        <Calculated>-1</Calculated>
+        <Left>1700</Left><!-- Было: 1080. Поле комментария к раскладке. -->
+        <Top>1710</Top>
+        <Width>5800</Width>
+        <Height>285</Height>
+        <Align>0</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label2</Name>
+        <Section>0</Section>
+        <Text>Комментарий</Text><!-- Было: Nest Notes-->
+        <Left>90</Left>
+        <Top>1710</Top>
+        <Width>1905</Width>
+        <Height>300</Height>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Nest ID]Lbl1</Name>
+        <Section>0</Section>
+        <Text>ID листа</Text>
+        <Left>90</Left>
+        <Top>630</Top>
+        <Width>1815</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Plate_IDCtl</Name>
+        <Section>0</Section>
+        <Text>Plate_ID</Text>
+        <Calculated>-1</Calculated>
+        <Left>1710</Left>
+        <Top>630</Top>
+        <Width>2625</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label3</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>1530</Left>
+        <Top>630</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label4</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>1530</Left>
+        <Top>1170</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Nest ID]Lbl2</Name>
+        <Section>0</Section>
+        <Text>Револьвер</Text><!-- Было: Turret -->
+        <Left>90</Left>
+        <Top>1170</Top>
+        <Width>1815</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Turret_set-up_nameCtl</Name>
+        <Section>0</Section>
+        <Text>Turret_set_up_name</Text>
+        <Calculated>-1</Calculated>
+        <Left>1710</Left>
+        <Top>1170</Top>
+        <Width>2625</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Plate size]Lbl2</Name>
+        <Section>0</Section>
+        <Text>Смены инструмента</Text><!-- Было: # of Tool Changes -->
+        <Left>4680</Left>
+        <Top>630</Top>
+        <Width>1735</Width><!-- Было: 1635-->
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label7</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>6480</Left>
+        <Top>630</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Number_of_tool_changeCtl</Name>
+        <Section>0</Section>
+        <Text>Number_of_tool_change</Text>
+        <Calculated>-1</Calculated>
+        <Left>6660</Left>
+        <Top>630</Top>
+        <Width>1635</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Plate size]Lbl3</Name>
+        <Section>0</Section>
+        <Text>Файл программы</Text>
+        <Left>90</Left>
+        <Top>360</Top>
+        <Width>1500</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>NC_file_nameCtl</Name>
+        <Section>0</Section>
+        <Text>NC_file_name</Text>
+        <Calculated>-1</Calculated>
+        <Left>1710</Left>
+        <Top>360</Top>
+        <Width>2625</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label8</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>1530</Left>
+        <Top>360</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label11</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>1530</Left>
+        <Top>1440</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Nest ID]Lbl3</Name>
+        <Section>0</Section>
+        <Text>Зажимы</Text><!-- Было: Clamps -->
+        <Left>90</Left>
+        <Top>1440</Top>
+        <Width>1815</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ClampsCtl</Name>
+        <Section>0</Section>
+        <Text>Clamps</Text>
+        <Calculated>-1</Calculated>
+        <Left>1710</Left>
+        <Top>1440</Top>
+        <Width>3525</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label12</Name>
+        <Section>0</Section>
+        <Text>:</Text>
+        <Left>6480</Left>
+        <Top>1170</Top>
+        <Width>285</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>9.75</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Slug_hole_sizeCtl</Name>
+        <Section>0</Section>
+        <Text>Slug_hole_size</Text>
+        <Calculated>-1</Calculated>
+        <Left>6660</Left>
+        <Top>1170</Top>
+        <Width>1635</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>[Plate size]Lbl4</Name>
+        <Section>0</Section>
+        <Text>Slug Hole</Text>
+        <Left>4680</Left>
+        <Top>1170</Top>
+        <Width>915</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+    </Fields>
+  </Report>
+
+  <!-- Report *** Report *** --><!-- Chudov: Сюда должны быть внесены основные изменения. -->
+  <Report>
+    <Name>Report</Name>
+    <Layout>
+      <Width>11520</Width>
+      <MarginLeft>1200</MarginLeft>
+      <MarginTop>500</MarginTop>
+      <MarginRight>1200</MarginRight>
+      <MarginBottom>200</MarginBottom>
+      <Orientation>1</Orientation>
+    </Layout>
+    <Groups>
+    </Groups>
+    <Sections>
+      <Section>
+        <Name>Detail</Name>
+        <Height>8400</Height>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <Type>1</Type>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <Type>2</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Page Header</Name>
+        <Type>3</Type>
+        <Height>1550</Height>
+        <Repeat>-1</Repeat>
+      </Section>
+      <Section>
+        <Name>Page Footer</Name>
+        <Type>4</Type>
+        <Height>720</Height>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>FooterRight</Name>
+        <Section>4</Section>
+        <Text>"Страница " &amp; [Page] &amp; " из " &amp; [Pages]</Text>
+        <Calculated>-1</Calculated>
+        <Left>7110</Left>
+        <Top>360</Top>
+        <Width>2985</Width>
+        <Height>300</Height>
+        <Align>2</Align>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Subreport</Name>
+        <Section>3</Section>
+        <Calculated>-1</Calculated>
+        <Left>1800</Left><!-- Было: 3370. Необходимо для смещения участка с информацией о станке. -->
+        <Top>875</Top>
+        <Width>4155</Width>
+        <Height>525</Height>
+        <CanGrow>-1</CanGrow>
+        <Subreport>General_sub</Subreport>
+      </Field>
+      <Field>
+        <Name>Subreport2</Name>
+        <Section>0</Section>
+        <Calculated>-1</Calculated>
+        <Top>5850</Top>
+        <Width>10095</Width>
+        <Height>1005</Height>
+        <BackColor>12632256</BackColor>
+        <BorderStyle>1</BorderStyle>
+        <BorderColor>16777215</BorderColor>
+        <CanGrow>-1</CanGrow>
+        <CanShrink>-1</CanShrink>
+        <Subreport>Eff_part_sub</Subreport>
+      </Field>
+      <Field><!--Chudov: Card logo.-->
+        <Name>Picture</Name>
+        <Section>3</Section>
+        <Calculated>-1</Calculated>
+        <Width>1500</Width>
+        <Height>1100</Height>
+        <Picture>logo.jpg</Picture>
+      </Field>
+      <Field>
+        <Name>TitleLbl</Name>
+        <Section>3</Section>
+        <Text>Карта наладки</Text>
+        <Left>1730</Left><!-- Было: 3330 -->
+        <Width>6855</Width>
+        <Height>555</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>24</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label15</Name>
+        <Section>3</Section>
+        <Text>Разработано:___________________/__________________/______________</Text>
+        <Left>1730</Left><!-- Было: 3330 -->
+        <Top>540</Top>
+        <Width>10000</Width><!-- Было: 3330 -->
+        <Height>285</Height>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+		<Name>Times New Roman</Name>
+		<Size>12</Size>
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label</Name>
+        <Section>3</Section>
+        <Text>Дата:</Text>
+        <Left>7830</Left>
+        <Top>990</Top>
+        <Width>495</Width>
+        <Height>270</Height>
+        <Font>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>FooterLeft1</Name>
+        <Section>3</Section>
+        <Text>Now()</Text>
+        <Calculated>-1</Calculated>
+        <Left>8370</Left>
+        <Top>990</Top>
+        <Width>1725</Width>
+        <Height>300</Height>
+        <Align>0</Align>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>DivLine7</Name><!--Chudov: Divider for header.-->
+        <Section>3</Section>
+        <Top>1260</Top>
+        <Width>10095</Width>
+        <Height>50</Height>
+        <BackStyle>1</BackStyle>
+        <BackColor>0</BackColor>
+      </Field>
+      <Field>
+        <Name>Eff_Plate_picture</Name>
+        <Section>0</Section>
+        <Width>10095</Width>
+        <Height>4245</Height>
+        <Align>7</Align>
+        <Picture>Eff_Plate_picture</Picture>
+        <PictureAlign>10</PictureAlign>
+      </Field>
+      <Field>
+        <Name>Subreport1</Name>
+        <Section>0</Section>
+        <Calculated>-1</Calculated>
+        <Top>7290</Top>
+        <Width>10095</Width>
+        <Height>1005</Height>
+        <BackColor>12632256</BackColor>
+        <BorderStyle>1</BorderStyle>
+        <BorderColor>16777215</BorderColor>
+        <ForcePageBreak>2</ForcePageBreak>
+        <CanGrow>-1</CanGrow>
+        <CanShrink>-1</CanShrink>
+        <Subreport>Tool_sub</Subreport>
+      </Field>
+      <Field>
+        <Name>Subreport3</Name>
+        <Section>0</Section>
+        <Calculated>-1</Calculated>
+        <Top>4590</Top>
+        <Width>5775</Width>
+        <Height>825</Height>
+        <BorderColor>16777215</BorderColor>
+        <CanGrow>-1</CanGrow>
+        <Subreport>Plate data</Subreport>
+      </Field>
+      <Field>
+        <Name>Label3</Name>
+        <Section>0</Section>
+        <Text>Информация о листе</Text>
+        <Top>4320</Top>
+        <Width>3500</Width><!-- Ширина текстового поля. Было 1995. -->
+        <Height>300</Height>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>12</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label4</Name>
+        <Section>0</Section>
+        <Text>Информация о деталях</Text>
+        <Top>5580</Top>
+        <Width>3500</Width><!-- Ширина текстового поля. Было 1995. -->
+        <Height>300</Height>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>12</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label5</Name>
+        <Section>0</Section>
+        <Text>Информация по инструменту</Text>
+        <Top>7020</Top>
+        <Width>3500</Width><!-- Ширина текстового поля. Было 1995. -->
+        <Height>300</Height>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>12</Size>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label1</Name>
+        <Section>4</Section>
+        <Text>Единичная</Text>
+        <Left>550</Left><!-- Было: 90 -->
+        <Top>270</Top>
+        <Width>1500</Width><!-- Было: 915 -->
+        <Height>375</Height>
+        <Font>
+		<Name>Times New Roman</Name>
+		<Size>12</Size>
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Label2</Name>
+        <Section>4</Section>
+        <Text>Серийная</Text>
+        <Left>2210</Left><!-- Было: 1710 -->
+        <Top>270</Top>
+        <Width>1455</Width>
+        <Height>375</Height>
+        <Font>
+		<Name>Times New Roman</Name>
+		<Size>12</Size>
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Rectangle</Name>
+        <Section>4</Section>
+        <Left>150</Left><!-- Было: 900 -->
+        <Top>270</Top>
+        <Width>270</Width>
+        <Height>270</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Rectangle1</Name>
+        <Section>4</Section>
+        <Left>1850</Left><!-- Было: 3150 -->
+        <Top>270</Top>
+        <Width>270</Width>
+        <Height>270</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Line</Name>
+        <Section>4</Section>
+        <Left>180</Left>
+        <Top>90</Top>
+        <Width>9540</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>2</LineSlant>
+      </Field>
+      <Field>
+        <Name>Label6</Name>
+        <Section>4</Section>
+        <Text>Экспериментальная</Text>
+        <Left>3760</Left><!-- Было: 3960 -->
+        <Top>270</Top>
+        <Width>2500</Width><!-- Было: 1455 -->
+        <Height>375</Height>
+        <Font>
+		<Name>Times New Roman</Name>
+		<Size>12</Size>
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Rectangle2</Name>
+        <Section>4</Section>
+        <Left>3345</Left><!-- Было: 5400 -->
+        <Top>270</Top>
+        <Width>270</Width>
+        <Height>270</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Bold>-1</Bold>
+        </Font>
+      </Field>
+    </Fields>
+  </Report>
+
+  <!-- Report *** Tool_sub *** -->
+  <Report>
+    <Name>Tool_sub</Name>
+    <DataSource>
+      <RecordSource>Tool_sub</RecordSource>
+    </DataSource>
+    <Layout>
+      <Width>10095</Width>
+      <Orientation>1</Orientation>
+    </Layout>
+    <Groups>
+    </Groups>
+    <Sections>
+      <Section>
+        <Name>Detail</Name>
+        <Height>300</Height>
+        <BackColor>12632256</BackColor>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <Type>1</Type>
+        <Height>315</Height>
+        <BackColor>12632256</BackColor>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <Type>2</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Page Header</Name>
+        <Type>3</Type>
+      </Section>
+      <Section>
+        <Name>Page Footer</Name>
+        <Type>4</Type>
+        <Height>300</Height>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>ToolCtl</Name>
+        <Section>0</Section>
+        <Text>Tool</Text>
+        <Calculated>-1</Calculated>
+        <Left>900</Left>
+        <Width>1995</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Load_angleCtl</Name>
+        <Section>0</Section>
+        <Text>Load_angle</Text>
+        <Calculated>-1</Calculated>
+        <Left>3870</Left>
+        <Width>735</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>DieCtl</Name>
+        <Section>0</Section>
+        <Text>Die</Text>
+        <Calculated>-1</Calculated>
+        <Left>4680</Left>
+        <Width>735</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>FooterRight</Name>
+        <Section>4</Section>
+        <Text>"Страница " &amp; [Page] &amp; " из " &amp; [Pages]</Text>
+        <Calculated>-1</Calculated>
+        <Left>4680</Left>
+        <Width>4680</Width>
+        <Height>300</Height>
+        <Align>2</Align>
+        <Font>
+          <Name>Times New Roman</Name>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ToolLbl1</Name>
+        <Section>1</Section>
+        <Text>Инструмент</Text>
+        <Left>1000</Left>
+        <Top>90</Top>
+        <Width>1000</Width><!-- Было: 885. -->
+        <Height>225</Height>
+        <Align>3</Align>
+        <WordWrap>0</WordWrap>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Load_angleLbl1</Name>
+        <Section>1</Section>
+        <Text>Угол</Text>
+        <Left>3965</Left>
+        <Top>90</Top>
+        <Width>555</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <WordWrap>0</WordWrap>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Total_hitsLbl1</Name>
+        <Section>1</Section>
+        <Text>Зазор</Text>
+        <Left>4700</Left><!-- Было: 4765. -->
+        <Top>90</Top>
+        <Width>700</Width><!-- Было: 540. -->
+        <Height>225</Height>
+        <Align>7</Align>
+        <WordWrap>0</WordWrap>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>SizeLabel</Name>
+        <Section>1</Section>
+        <Text>Размер</Text>
+        <Left>3050</Left><!-- Было: 3150 -->
+        <Top>90</Top>
+        <Width>600</Width><!-- Было: 465 -->
+        <Height>225</Height>
+        <Align>7</Align>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>SizeCtl1</Name>
+        <Section>0</Section>
+        <Text>Size</Text>
+        <Calculated>-1</Calculated>
+        <Left>2975</Left>
+        <Width>800</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ToolLbl</Name>
+        <Section>1</Section>
+        <Text>Станция</Text>
+        <Left>175</Left>
+        <Top>90</Top>
+        <Width>885</Width>
+        <Height>225</Height>
+        <Align>3</Align>
+        <WordWrap>0</WordWrap>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>StationCtl</Name>
+        <Section>0</Section>
+        <Text>Station</Text>
+        <Calculated>-1</Calculated>
+        <Left>280</Left>
+        <Width>435</Width>
+        <Height>225</Height>
+        <Align>8</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <MarginRight>50</MarginRight>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Total_hitsLbl</Name>
+        <Section>1</Section>
+        <Text>Удары</Text>
+        <Left>5395</Left>
+        <Top>90</Top>
+        <Width>915</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <WordWrap>0</WordWrap>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Total_hitsCtl1</Name>
+        <Section>0</Section>
+        <Text>Total_hits</Text>
+        <Calculated>-1</Calculated>
+        <Left>5495</Left>
+        <Width>735</Width>
+        <Height>225</Height>
+        <Align>7</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Tool_commentCtl1</Name>
+        <Section>0</Section>
+        <Text>Tool_comment</Text>
+        <Calculated>-1</Calculated>
+        <Left>6295</Left>
+        <Width>3525</Width>
+        <Height>225</Height>
+        <Align>6</Align>
+        <BackStyle>1</BackStyle>
+        <BorderStyle>1</BorderStyle>
+        <MarginLeft>100</MarginLeft>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Total_hitsLbl2</Name>
+        <Section>1</Section>
+        <Text>Комментарий</Text>
+        <Left>7470</Left>
+        <Top>90</Top>
+        <Width>1200</Width><!-- Ширина текстового поля. Было 915 -->
+        <Height>225</Height>
+        <Align>3</Align>
+        <WordWrap>1</WordWrap>
+        <Font>
+		<Name>Arial</Name><!--<Name>Times New Roman</Name>-->
+		<Size>8</Size><!-- Было: 9.75 -->
+		<Bold>-1</Bold>
+        </Font>
+      </Field>
+    </Fields>
+  </Report>
+</Reports>

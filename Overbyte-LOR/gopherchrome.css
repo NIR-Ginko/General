@@ -1,0 +1,96 @@
+/*
+	Copyright and Authorship (2009) by NIR aka IMUTNAPIŠTIM.
+*/
+
+@charset "UTF-8";
+
+body
+{
+	background: black;
+	color: white;
+	font-style: normal;
+	font-family: monospace;
+}
+
+:link { color: white; }
+:visited { color: white; }
+
+img.gicon
+{
+	border: 0px;
+}
+
+table.gmenu
+{
+	width: 100%;
+	border: 0px;
+}
+
+td.gicon
+{
+	text-align: right;
+	vertical-align: middle;
+	padding: 0px;
+	margin: 1px;
+}
+
+td.ds
+{
+	text-align: left;
+	vertical-align: middle;
+	width: 100%;
+	padding: 0px;
+	margin: 1px;
+}
+
+span.diritem { font-style: normal; }
+span.fileitem { font-style: normal; }
+span.infoitem { font-style: normal; }
+span.searchitem { font-style: normal; }
+span.urlitem { font-style: italic; }
+span.telnetitem { font-style: italic; }
+span.erroritem { font-style: normal; }
+
+span.purl
+{
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+div#topbar
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+div#urlparent
+{
+	display: table-cell;
+	width: 100%;
+	text-align: left;
+	padding: 0px;
+	margin: 0px;
+}
+
+div#urlarea
+{
+	padding: 8px;
+	margin-bottom: 0px;
+	vertical-align: middle;
+	border: 0px;
+}
+
+div#buttonarea
+{
+	display: table-cell;
+}
+
+div#contentarea
+{
+	clear: both;
+	padding: 5px;
+	margin-top: 0px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
